@@ -2,7 +2,7 @@ import configparser
 import psycopg2
 from flask_sqlalchemy import SQLAlchemy
 
-class connection:
+class Connection:
   def getConnection():
     config = configparser.ConfigParser()
     config.read('settings.conf')
@@ -14,7 +14,7 @@ class connection:
     db_pass = config.get('database', 'pass')
     
     connection = psycopg2.connect("host=%s port=%s dbname=%s user=%s password=%s" % (db_host,db_port,db_name,db_user,db_pass))
-    cur = connection.cursor()
+    cursor = connection.cursor()
     
-    
-    print(db_host)
+    print(connection)
+    return cursor
