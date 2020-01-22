@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+<div style="position: absolute; top: 50%; left: 50%; -webkit-transform : translate(-50%,-50%); transform : translate(-50%,-50%);">
+  <h1> 新規登録 </h1>
+    <form action="new" method="post">
+    name <input name="name" type="text"></input><br />
+    <input type="submit" value="登録"></input>
+  </form>
+</div>
+{% endblock %}

@@ -1,9 +1,8 @@
 import configparser
-import psycopg2
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
 
 class Connection:
-  def getConnection():
+  def getEngine():
     config = configparser.ConfigParser()
     config.read('settings.conf')
 
@@ -13,8 +12,8 @@ class Connection:
     db_user = config.get('database', 'user')
     db_pass = config.get('database', 'pass')
     
-    connection = psycopg2.connect("host=%s port=%s dbname=%s user=%s password=%s" % (db_host,db_port,db_name,db_user,db_pass))
-    cursor = connection.cursor()
+    db_declare = "postgresql+psycopg2://%s:%s@%s:%s/%s" % (db_user,db_pass,db_host,db_port,db_name)
+    engine = create_engine(db_declare, echo=True)
     
-    print(connection)
-    return cursor
+    print(db_declare)
+    return engine

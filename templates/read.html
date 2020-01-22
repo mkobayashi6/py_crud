@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<div style="position: absolute; top: 50%; left: 50%; -webkit-transform : translate(-50%,-50%); transform : translate(-50%,-50%);">
+  <h1> 条件 </h1>
+  <form action="read" method="post">
+    ID  : <input type="text" name="id"></input><br />
+    <!-- NAME: <input type="text" name="name"></input><br /> -->
+    <input type="submit" value="検索"></input>
+  </form>
+  <h1> 一覧 </h1>
+  <form action="update" method="post">
+    <table border="1">
+      <tr>
+        <th>id</th><th>name</th><th>update</th><th>delete</th>
+      </tr>
+      {% for row in list %}
+        <tr>
+          <td>{{row[0]}}<input type="hidden" name="id" value="{{row[0]}}"></td><td><input type="text" name="name" value="{{row[1]}}"></input><br /></td><td><input type="submit" name="{{row[0]}}" value="更新"></input></td><td><input type="button" onclick="del({{row[0]}})" value="削除"></input></td>
+        </tr>
+      {% endfor %} 
+    </table>
+  <form>
+</div>
+
+<script>
+  function del(id){
+    window.alert("user ID" + id + "を削除する関数を追加予定");
+  }
+</script>
+{% endblock %}
