@@ -15,5 +15,4 @@ class Connection:
     db_declare = "postgresql+psycopg2://%s:%s@%s:%s/%s" % (db_user,db_pass,db_host,db_port,db_name)
     engine = create_engine(db_declare, echo=True)
     
-    print(db_declare)
     return engine

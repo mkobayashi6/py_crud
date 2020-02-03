@@ -21,13 +21,16 @@ class ReadController:
 class WriteController:
     def create():
         print('create')
-        #create record
+        
         return render_template('create.html', title='create show')
         
     def new(form):
         print('new')
-        print(form['name'])
-        #create record
+        #TODO: validation
+        if models.User.create(form):
+            print("succeed")
+        else:
+            print("failed")
         return render_template('index.html', title='create done')
         
     def update(request):

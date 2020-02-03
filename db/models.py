@@ -25,6 +25,13 @@ class User(Base):
         result = engine.execute("select * from users order by id")
         
         return result
+        
+    def create(form):
+        engine = db_util.Connection.getEngine()
+        # TODO: password encrypt
+        result = engine.execute("insert into users (name, email, password, hint, pass_default, administrator) values ('%s', '%s', '%s', '%s', true, true)"
+         % (form['name'], form['email'], form['password'], form['hint']))
+        return result
     
     def update(id, name):
         # todo: dont repeat engine def
