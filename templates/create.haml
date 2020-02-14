@@ -1,0 +1,25 @@
+-extends "layout.html"
+-block content
+  %div.mid
+    %h1
+      新規登録
+    %form action="new" method="post"
+      %ui.markless
+        %li
+          名前<font color="red">*</font>
+          %input name="name" type="text" required="true"
+        %li
+          メールアドレス<font color="red">*</font>
+          %input name="email" type="text" required="true"
+        %li
+          パスワード<font color="red">*</font>
+          %input name="password" type="password"
+        %li
+          パス再入力<font color="red">*</font>
+          %input name="confirm" type="password"
+        %li
+          パス ヒント
+          %input name="hint" type="text"
+        %li
+          %input type="submit" value="登録"
+        

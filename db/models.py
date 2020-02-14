@@ -28,8 +28,7 @@ class User(Base):
         
     def create(form):
         engine = db_util.Connection.getEngine()
-        # TODO: password encrypt
-        result = engine.execute("insert into users (name, email, password, hint, pass_default, administrator) values ('%s', '%s', '%s', '%s', true, true)"
+        result = engine.execute("insert into users (name, email, password, hint, pass_default, administrator) values ('%s', '%s', crypt('%s', gen_salt('md5')), '%s', false, true)"
          % (form['name'], form['email'], form['password'], form['hint']))
         return result
     

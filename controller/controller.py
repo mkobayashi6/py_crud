@@ -3,7 +3,7 @@ from db import models
 
 class IndexController:
     def show():
-        return render_template('index.html', title='hello py')
+        return render_template('index.haml', title='hello py')
 
 class ReadController:
     def read(request):
@@ -16,13 +16,13 @@ class ReadController:
         for row in result:
             print(row.name)
             users.append((row.id, row.name))
-        return render_template('read.html', title='read done', list = users)
+        return render_template('read.haml', title='read done', list = users)
         
 class WriteController:
     def create():
         print('create')
         
-        return render_template('create.html', title='create show')
+        return render_template('create.haml', title='create show')
         
     def new(form):
         print('new')
@@ -31,7 +31,7 @@ class WriteController:
             print("succeed")
         else:
             print("failed")
-        return render_template('index.html', title='create done')
+        return render_template('index.haml', title='create done')
         
     def update(request):
         if request.method == 'POST':
@@ -45,7 +45,7 @@ class WriteController:
             for row in result:
                 print(row.name)
                 users.append((row.id, row.name))
-            return render_template('read.html', title='update done', list = users)
+            return render_template('read.haml', title='update done', list = users)
         else:
             # todo: not repeat user select
             users = []
@@ -53,17 +53,17 @@ class WriteController:
             for row in result:
                 print(row.name)
                 users.append((row.id, row.name))
-            return render_template('read.html', title='read done', list = users)
+            return render_template('read.haml', title='read done', list = users)
         
     def delete(request):
         if request.method == 'POST':
             print('delete')
             #delete record
-            return render_template('index.html', title='delete done')
+            return render_template('index.haml', title='delete done')
         else:
             users = []
             result = models.User.all()
             for row in result:
                 print(row.name)
                 users.append((row.id, row.name))
-            return render_template('read.html', title='read done', list = users)
+            return render_template('read.haml', title='read done', list = users)

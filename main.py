@@ -1,7 +1,13 @@
 from flask import *
 from controller import controller
+from werkzeug import ImmutableDict
 
-app = Flask(__name__)
+class FlaskWithHamlish(Flask):
+  jinja_options = ImmutableDict(extensions = [
+    'jinja2.ext.autoescape', 'jinja2.ext.with_',
+    'hamlish_jinja.HamlishExtension'
+  ])
+app = FlaskWithHamlish(__name__)
 
 @app.route('/')
 def index():
